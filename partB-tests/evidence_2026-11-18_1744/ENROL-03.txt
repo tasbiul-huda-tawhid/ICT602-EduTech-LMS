@@ -1,0 +1,6 @@
+CASE_ID: ENROL-03
+SUT: source tree supplied on the command line (see RUN_HEADER.txt for path, commit and JDK)
+LEVEL: service-level unless CLI transcript explicitly included
+PASS EXCEPTION | existing learner tries again when capacity already full | actual=IllegalStateException: You are already enrolled in this course.
+PASS ASSERTION | duplicate does not consume another seat
+RESULT: PASS | assertions=2

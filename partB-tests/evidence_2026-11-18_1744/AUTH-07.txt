@@ -1,0 +1,7 @@
+CASE_ID: AUTH-07
+SUT: integrated EduTech LMS build (see RUN_HEADER.txt)
+Test program: Kaium's KaiumAuthBoundaryAndAuth09Checks.java, unchanged; full output in AUTH-07_AUTH-09_harness.txt
+AUTH-07a | PASS | Two-character username rejected | Input username length=2; observed='Username must have at least 3 characters.'
+AUTH-07b | PASS | Three-character username accepted | Input username length=3; observed='registered'
+AUTH-07c | PASS | Seven-character password rejected | Input password length=7; observed='Password must have at least 8 characters.'
+AUTH-07d | PASS | Eight-character password accepted | Input password length=8; observed='registered'

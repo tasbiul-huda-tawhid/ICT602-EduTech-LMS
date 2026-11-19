@@ -1,0 +1,11 @@
+CASE_ID: WB-02
+SUT: integrated EduTech LMS build (see RUN_HEADER.txt for commit and JDK)
+TECHNIQUE: basis path testing, V(G) = P + 1 = 5 + 1 = 6; E - N + 2 = 16 - 12 + 2 = 6
+PASS CHECK | E1 learner null | actual=IllegalArgumentException: Learner is required.
+PASS CHECK | E2 course not resolved (getCourse throws) | actual=IllegalArgumentException: Unknown course ID: C7
+PASS CHECK | E3 course not published | actual=IllegalStateException: This course is not published.
+PASS CHECK | E4 duplicate enrolment | actual=IllegalStateException: You are already enrolled in this course.
+PASS CHECK | E5 course full | actual=IllegalStateException: This course is full.
+PASS CHECK | E6 success path returns and saves the enrolment
+PASS CHECK | E6 enrolment date is recorded
+RESULT: PASS | checks=7

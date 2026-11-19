@@ -1,0 +1,107 @@
+CASE_ID: USE-01
+SUT: java -cp <integrated build> edutech.Main, started fresh for each run
+Input is piped, so typed text is not echoed; the input list is shown first.
+PURPOSE: heuristic walkthrough of the console screens (Nielsen's heuristics), evidence captured from one scripted session per role
+
+==== RUN: learner, instructor and administrator tasks with typical slips ====
+Input lines (in order): 1 | alex | wrongpass | 1 | alex | Learner2026! | 1 | 2 | c1 | 2 | C1 | 3 | 0 | 1 | priya | Teach2026! | 1 | UX course | Heuristics | 0 | 25 | 2 | C3 | 3 | 0 | 1 | sam | Admin2026! | 2 | 3 | 2
+---- program output ----
+Starting EduTech LMS (preparing secure demo accounts)...
+==============================================
+ EduTech LMS: Secure Login and Course Enrolment
+==============================================
+Demo accounts (username / password):
+  Learner:       alex  / Learner2026!
+  Learner:       maya  / Learner2026!
+  Instructor:    priya / Teach2026!
+  Administrator: sam   / Admin2026!
+
+=== EduTech LMS ===
+1. Log in
+2. Back / exit
+Choose: Username: Password: Login not completed: Incorrect username or password.
+
+=== EduTech LMS ===
+1. Log in
+2. Back / exit
+Choose: Username: Password: Welcome, Alex Chen (Learner).
+
+LEARNER | 1 Published courses | 2 Enrol | 3 My courses | 0 Log out
+Choice: ID | Title | Status | Capacity
+C1 | Introduction to Java | PUBLISHED | 1
+
+LEARNER | 1 Published courses | 2 Enrol | 3 My courses | 0 Log out
+Choice: Course ID: Unable to complete action: Unknown course ID: c1
+
+LEARNER | 1 Published courses | 2 Enrol | 3 My courses | 0 Log out
+Choice: Course ID: Enrolled successfully.
+
+LEARNER | 1 Published courses | 2 Enrol | 3 My courses | 0 Log out
+Choice: ID | Title | Status | Capacity
+C1 | Introduction to Java | PUBLISHED | 1
+
+LEARNER | 1 Published courses | 2 Enrol | 3 My courses | 0 Log out
+Choice: Alex Chen (Learner) has logged out.
+
+=== EduTech LMS ===
+1. Log in
+2. Back / exit
+Choose: Username: Password: Welcome, Dr Priya Nair (Instructor).
+
+INSTRUCTOR | 1 Create | 2 Publish | 3 My courses | 0 Log out
+Choice: Title: Description: Capacity: Please enter a number from 1 to 1000000.
+Capacity: Draft created: C3
+
+INSTRUCTOR | 1 Create | 2 Publish | 3 My courses | 0 Log out
+Choice: Course ID: Course published successfully.
+
+INSTRUCTOR | 1 Create | 2 Publish | 3 My courses | 0 Log out
+Choice: ID | Title | Status | Capacity
+C1 | Introduction to Java | PUBLISHED | 1
+C2 | Software Testing Basics | DRAFT | 30
+C3 | UX course | PUBLISHED | 25
+
+INSTRUCTOR | 1 Create | 2 Publish | 3 My courses | 0 Log out
+Choice: Dr Priya Nair (Instructor) has logged out.
+
+=== EduTech LMS ===
+1. Log in
+2. Back / exit
+Choose: Username: Password: Welcome, Sam Taylor (Administrator).
+
+=== Administrator Menu ===
+1. Create user account
+2. List user accounts
+3. Log out
+Choose: Registered accounts (no password information is displayed):
+ - U001 | Alex Chen (Learner)
+ - U004 | Maya Singh (Learner)
+ - U002 | Dr Priya Nair (Instructor)
+ - U003 | Sam Taylor (Administrator)
+
+=== Administrator Menu ===
+1. Create user account
+2. List user accounts
+3. Log out
+Choose: Sam Taylor (Administrator) has logged out.
+
+=== EduTech LMS ===
+1. Log in
+2. Back / exit
+Choose: Goodbye from EduTech LMS.
+---- end output (exit code 0) ----
+
+HEURISTIC CHECKLIST (H = heuristic number in Nielsen's list)
+PASS CHECK | H1 visibility of status: every action is confirmed (enrolled, draft created, published, logged out)
+PASS CHECK | H2 match with the real world: menus name tasks in plain words (Published courses, Enrol, My courses)
+PASS CHECK | H5 error prevention: an invalid capacity is refused and re-asked, never stored
+PASS CHECK | H9 recognise and recover from errors: rejections state the reason
+PASS CHECK | Security trade-off kept: login failure does not say which field was wrong
+OBSERVATION USE-OBS-01 (H4 consistency): learner and instructor menus use '0 Log out', but the administrator menu uses '3. Log out' and the login menu '2. Back / exit'.
+PASS CHECK | USE-OBS-01 evidence present
+OBSERVATION USE-OBS-02 (H4/H9): usernames are case-insensitive but course IDs are not; 'c1' is reported as unknown although C1 exists.
+PASS CHECK | USE-OBS-02 evidence present
+OBSERVATION USE-OBS-03 (H5): the 'Capacity:' prompt does not show the allowed range until a wrong value is typed.
+PASS CHECK | USE-OBS-03 evidence present
+PASS CHECK | program ends normally with goodbye, exit code 0 and no stack trace
+RESULT: PASS | checks=9

@@ -1,0 +1,17 @@
+CASE_ID: ENROL-05
+SUT: integrated EduTech LMS build (see RUN_HEADER.txt for commit and JDK)
+TECHNIQUE: decision table (cause-effect), one fresh fixture per rule
+Conditions: C1 course exists | C2 published | C3 already enrolled | C4 seat free
+PASS CHECK | R1  C1=N            -> Unknown course ID | actual=IllegalArgumentException: Unknown course ID: C99
+PASS CHECK | R1b blank course ID -> Course ID is required. | actual=IllegalArgumentException: Course ID is required.
+PASS CHECK | R2  C1=Y C2=N       -> not published | actual=IllegalStateException: This course is not published.
+PASS CHECK | R3  C1=Y C2=Y C3=Y C4=Y -> already enrolled (seat still free) | actual=IllegalStateException: You are already enrolled in this course.
+PASS CHECK | R3  duplicate did not use a second seat (count stays 1)
+PASS CHECK | R4  C1=Y C2=Y C3=Y C4=N -> already enrolled (duplicate checked before capacity) | actual=IllegalStateException: You are already enrolled in this course.
+PASS CHECK | R5  C1=Y C2=Y C3=N C4=N -> course full | actual=IllegalStateException: This course is full.
+PASS CHECK | R5  rejected learner was not saved
+PASS CHECK | R6  C1=Y C2=Y C3=N C4=Y -> enrolled; padded ID ' C1 ' is trimmed and stored as C1
+PASS CHECK | R6  seat count is now 1 = capacity (last seat taken)
+PASS CHECK | R7  learner missing (null) -> Learner is required. | actual=IllegalArgumentException: Learner is required.
+PASS CHECK | R8  course ID in lower case ('c1') -> treated as unknown (IDs are case-sensitive) | actual=IllegalArgumentException: Unknown course ID: c1
+RESULT: PASS | checks=12

@@ -1,0 +1,9 @@
+CASE_ID: COURSE-02
+SUT: source tree supplied on the command line (see RUN_HEADER.txt for path, commit and JDK)
+LEVEL: service-level unless CLI transcript explicitly included
+PASS EXCEPTION | empty title | actual=IllegalArgumentException: Course title is required.
+PASS EXCEPTION | blank title | actual=IllegalArgumentException: Course title is required.
+PASS EXCEPTION | empty description | actual=IllegalArgumentException: Course description is required.
+PASS EXCEPTION | blank description | actual=IllegalArgumentException: Course description is required.
+PASS ASSERTION | invalid entries create no courses
+RESULT: PASS | assertions=5

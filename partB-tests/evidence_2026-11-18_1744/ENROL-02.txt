@@ -1,0 +1,7 @@
+CASE_ID: ENROL-02
+SUT: source tree supplied on the command line (see RUN_HEADER.txt for path, commit and JDK)
+LEVEL: service-level unless CLI transcript explicitly included
+PASS EXCEPTION | draft course | actual=IllegalStateException: This course is not published.
+PASS EXCEPTION | unknown course ID | actual=IllegalArgumentException: Unknown course ID: MISSING
+PASS ASSERTION | neither rejection creates enrolment
+RESULT: PASS | assertions=3

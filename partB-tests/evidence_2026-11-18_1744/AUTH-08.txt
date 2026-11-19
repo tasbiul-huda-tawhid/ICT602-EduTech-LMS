@@ -1,0 +1,64 @@
+CASE_ID: AUTH-08
+SUT: java -cp <integrated build> edutech.Main, started fresh for each run
+Input is piped, so typed text is not echoed; the input list is shown first.
+CASE OWNER: Kaium (design). Duplicate user ID and duplicate username. FR-13
+
+==== RUN: administrator tries both duplicates, then lists accounts ====
+Input lines (in order): 1 | sam | Admin2026! | 1 | 1 | U001 | Copy Of Alex | copy@example.edu | 1 | dupid01 | Duplicate2026! | 1 | 1 | U040 | Another Alex | another@example.edu | 1 | alex | Duplicate2026! | 2 | 3 | 2
+---- program output ----
+Starting EduTech LMS (preparing secure demo accounts)...
+==============================================
+ EduTech LMS: Secure Login and Course Enrolment
+==============================================
+Demo accounts (username / password):
+  Learner:       alex  / Learner2026!
+  Learner:       maya  / Learner2026!
+  Instructor:    priya / Teach2026!
+  Administrator: sam   / Admin2026!
+
+=== EduTech LMS ===
+1. Log in
+2. Back / exit
+Choose: Username: Password: Welcome, Sam Taylor (Administrator).
+
+=== Administrator Menu ===
+1. Create user account
+2. List user accounts
+3. Log out
+Choose: Account type: 1. Learner  2. Instructor  3. Administrator
+Choose role: User ID: Full name: Email: Learner type (1. Student, 2. Corporate trainee): Login username: Password (minimum 8 characters): Account action failed: That user ID is already registered.
+
+=== Administrator Menu ===
+1. Create user account
+2. List user accounts
+3. Log out
+Choose: Account type: 1. Learner  2. Instructor  3. Administrator
+Choose role: User ID: Full name: Email: Learner type (1. Student, 2. Corporate trainee): Login username: Password (minimum 8 characters): Account action failed: That username is already registered.
+
+=== Administrator Menu ===
+1. Create user account
+2. List user accounts
+3. Log out
+Choose: Registered accounts (no password information is displayed):
+ - U001 | Alex Chen (Learner)
+ - U004 | Maya Singh (Learner)
+ - U002 | Dr Priya Nair (Instructor)
+ - U003 | Sam Taylor (Administrator)
+
+=== Administrator Menu ===
+1. Create user account
+2. List user accounts
+3. Log out
+Choose: Sam Taylor (Administrator) has logged out.
+
+=== EduTech LMS ===
+1. Log in
+2. Back / exit
+Choose: Goodbye from EduTech LMS.
+---- end output (exit code 0) ----
+PASS CHECK | output shows "Account action failed: That user ID is already registered."
+PASS CHECK | output shows "Account action failed: That username is already registered." (after the previous line)
+PASS CHECK | output shows "Registered accounts (no password information is displayed):" (after the previous line)
+PASS CHECK | U001 listed once and U040 not created
+PASS CHECK | program ends normally with goodbye, exit code 0 and no stack trace
+RESULT: PASS | checks=5

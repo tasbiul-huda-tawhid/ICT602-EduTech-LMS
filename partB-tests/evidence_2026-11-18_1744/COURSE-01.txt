@@ -1,0 +1,9 @@
+CASE_ID: COURSE-01
+SUT: source tree supplied on the command line (see RUN_HEADER.txt for path, commit and JDK)
+LEVEL: service-level unless CLI transcript explicitly included
+PASS ASSERTION | new course ID is C1
+PASS ASSERTION | course saved in repository
+PASS ASSERTION | new course status is DRAFT
+PASS ASSERTION | owner and entered fields retained/trimmed
+PASS ASSERTION | capacity=2
+RESULT: PASS | assertions=5

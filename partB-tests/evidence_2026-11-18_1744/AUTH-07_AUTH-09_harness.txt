@@ -1,0 +1,17 @@
+AUTH-07a | PASS | Two-character username rejected | Input username length=2; observed='Username must have at least 3 characters.'
+AUTH-07b | PASS | Three-character username accepted | Input username length=3; observed='registered'
+AUTH-07c | PASS | Seven-character password rejected | Input password length=7; observed='Password must have at least 8 characters.'
+AUTH-07d | PASS | Eight-character password accepted | Input password length=8; observed='registered'
+AUTH-09a | PASS | Salt length is 16 bytes | Observed salt lengths=16, 16, 16
+AUTH-09b | PASS | Derived hash length is 32 bytes (256 bits) | Observed hash lengths=32, 32, 32
+AUTH-09c | PASS | Same password on separate accounts receives different salts and hashes | Same test password used for two accounts; salts equal=false; derived hashes equal=false
+AUTH-09d | PASS | Stored hash is not the plaintext password | Stored value is a 32-byte derived value; plaintext comparison=false
+AUTH-09e | PASS | Credential stores salt/hash fields and no plaintext-password field | Credential fields=[salt, failedAttempts, locked, userId, MAX_FAILED_ATTEMPTS, passwordHash, username]
+AUTH-09f | PASS | Credential getters return defensive copies | Mutating returned arrays did not alter stored credential arrays
+AUTH-09g | PASS | Administrator account listing omits password, salt and hash | Captured listing:
+Registered accounts (no password information is displayed):
+ - T102 | Three Char User (Learner)
+ - T104 | Eight Char Pass (Learner)
+ - T105 | Same Password User (Learner)
+AUTH-09h | PASS | Same password and same salt reproduce the same derived hash | Derived hash comparison for same input/salt=true
+SUMMARY | 12 passed; 0 failed

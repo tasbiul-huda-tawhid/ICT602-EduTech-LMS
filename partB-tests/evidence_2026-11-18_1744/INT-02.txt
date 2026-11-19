@@ -1,0 +1,96 @@
+CASE_ID: INT-02
+SUT: java -cp <integrated build> edutech.Main, started fresh for each run
+Input is piped, so typed text is not echoed; the input list is shown first.
+PURPOSE: AdminController -> AuthService -> InMemoryUserRepository -> AuthController (FR-13, FR-01)
+
+==== RUN: administrator creates a learner and an instructor, both then log in ====
+Input lines (in order): 1 | sam | Admin2026! | 1 | 1 | U010 | Jordan Lee | jordan@example.edu | 1 | jordan | Jordan2026! | 1 | 2 | U011 | Ravi Kumar | ravi@example.edu | Data Science | ravi | Ravi2026!x | 2 | 3 | 1 | jordan | Jordan2026! | 3 | 0 | 1 | RAVI | Ravi2026!x | 3 | 0 | 2
+---- program output ----
+Starting EduTech LMS (preparing secure demo accounts)...
+==============================================
+ EduTech LMS: Secure Login and Course Enrolment
+==============================================
+Demo accounts (username / password):
+  Learner:       alex  / Learner2026!
+  Learner:       maya  / Learner2026!
+  Instructor:    priya / Teach2026!
+  Administrator: sam   / Admin2026!
+
+=== EduTech LMS ===
+1. Log in
+2. Back / exit
+Choose: Username: Password: Welcome, Sam Taylor (Administrator).
+
+=== Administrator Menu ===
+1. Create user account
+2. List user accounts
+3. Log out
+Choose: Account type: 1. Learner  2. Instructor  3. Administrator
+Choose role: User ID: Full name: Email: Learner type (1. Student, 2. Corporate trainee): Login username: Password (minimum 8 characters): Created Jordan Lee (Learner) successfully.
+
+=== Administrator Menu ===
+1. Create user account
+2. List user accounts
+3. Log out
+Choose: Account type: 1. Learner  2. Instructor  3. Administrator
+Choose role: User ID: Full name: Email: Teaching department: Login username: Password (minimum 8 characters): Created Ravi Kumar (Instructor) successfully.
+
+=== Administrator Menu ===
+1. Create user account
+2. List user accounts
+3. Log out
+Choose: Registered accounts (no password information is displayed):
+ - U001 | Alex Chen (Learner)
+ - U004 | Maya Singh (Learner)
+ - U002 | Dr Priya Nair (Instructor)
+ - U003 | Sam Taylor (Administrator)
+ - U010 | Jordan Lee (Learner)
+ - U011 | Ravi Kumar (Instructor)
+
+=== Administrator Menu ===
+1. Create user account
+2. List user accounts
+3. Log out
+Choose: Sam Taylor (Administrator) has logged out.
+
+=== EduTech LMS ===
+1. Log in
+2. Back / exit
+Choose: Username: Password: Welcome, Jordan Lee (Learner).
+
+LEARNER | 1 Published courses | 2 Enrol | 3 My courses | 0 Log out
+Choice: No courses found.
+
+LEARNER | 1 Published courses | 2 Enrol | 3 My courses | 0 Log out
+Choice: Jordan Lee (Learner) has logged out.
+
+=== EduTech LMS ===
+1. Log in
+2. Back / exit
+Choose: Username: Password: Welcome, Ravi Kumar (Instructor).
+
+INSTRUCTOR | 1 Create | 2 Publish | 3 My courses | 0 Log out
+Choice: No courses found.
+
+INSTRUCTOR | 1 Create | 2 Publish | 3 My courses | 0 Log out
+Choice: Ravi Kumar (Instructor) has logged out.
+
+=== EduTech LMS ===
+1. Log in
+2. Back / exit
+Choose: Goodbye from EduTech LMS.
+---- end output (exit code 0) ----
+PASS CHECK | output shows "Created Jordan Lee (Learner) successfully."
+PASS CHECK | output shows "Created Ravi Kumar (Instructor) successfully." (after the previous line)
+PASS CHECK | output shows "Registered accounts (no password information is displayed):" (after the previous line)
+PASS CHECK | output shows " - U010 | Jordan Lee (Learner)" (after the previous line)
+PASS CHECK | output shows " - U011 | Ravi Kumar (Instructor)" (after the previous line)
+PASS CHECK | output shows "Welcome, Jordan Lee (Learner)." (after the previous line)
+PASS CHECK | output shows "LEARNER |" (after the previous line)
+PASS CHECK | output shows "No courses found." (after the previous line)
+PASS CHECK | output shows "Welcome, Ravi Kumar (Instructor)." (after the previous line)
+PASS CHECK | output shows "INSTRUCTOR |" (after the previous line)
+PASS CHECK | output shows "No courses found." (after the previous line)
+PASS CHECK | the new passwords never appear in the output
+PASS CHECK | program ends normally with goodbye, exit code 0 and no stack trace
+RESULT: PASS | checks=13

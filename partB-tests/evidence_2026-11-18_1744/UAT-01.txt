@@ -1,0 +1,148 @@
+CASE_ID: UAT-01
+SUT: java -cp <integrated build> edutech.Main, started fresh for each run
+Input is piped, so typed text is not echoed; the input list is shown first.
+PURPOSE: business scenario 'open a new short course', checked against acceptance criteria
+Executed by the group acting as each user role (proxy UAT), not by real end users.
+
+==== RUN: administrator sets up users, instructor runs a course, learners enrol until full ====
+Input lines (in order): 1 | sam | Admin2026! | 1 | 2 | U050 | Lena Park | lena@example.edu | Computing | lena | Lena2026!pw | 1 | 1 | U051 | Omar Ali | omar@example.edu | 1 | omar | Omar2026!pw | 2 | 3 | 1 | lena | Lena2026!pw | 1 | Agile Basics | Scrum and Kanban | 2 | 2 | C3 | 3 | 0 | 1 | omar | Omar2026!pw | 1 | 2 | C3 | 3 | 0 | 1 | maya | Learner2026! | 2 | C3 | 0 | 1 | alex | Learner2026! | 2 | C3 | 0 | 2
+---- program output ----
+Starting EduTech LMS (preparing secure demo accounts)...
+==============================================
+ EduTech LMS: Secure Login and Course Enrolment
+==============================================
+Demo accounts (username / password):
+  Learner:       alex  / Learner2026!
+  Learner:       maya  / Learner2026!
+  Instructor:    priya / Teach2026!
+  Administrator: sam   / Admin2026!
+
+=== EduTech LMS ===
+1. Log in
+2. Back / exit
+Choose: Username: Password: Welcome, Sam Taylor (Administrator).
+
+=== Administrator Menu ===
+1. Create user account
+2. List user accounts
+3. Log out
+Choose: Account type: 1. Learner  2. Instructor  3. Administrator
+Choose role: User ID: Full name: Email: Teaching department: Login username: Password (minimum 8 characters): Created Lena Park (Instructor) successfully.
+
+=== Administrator Menu ===
+1. Create user account
+2. List user accounts
+3. Log out
+Choose: Account type: 1. Learner  2. Instructor  3. Administrator
+Choose role: User ID: Full name: Email: Learner type (1. Student, 2. Corporate trainee): Login username: Password (minimum 8 characters): Created Omar Ali (Learner) successfully.
+
+=== Administrator Menu ===
+1. Create user account
+2. List user accounts
+3. Log out
+Choose: Registered accounts (no password information is displayed):
+ - U001 | Alex Chen (Learner)
+ - U004 | Maya Singh (Learner)
+ - U002 | Dr Priya Nair (Instructor)
+ - U003 | Sam Taylor (Administrator)
+ - U050 | Lena Park (Instructor)
+ - U051 | Omar Ali (Learner)
+
+=== Administrator Menu ===
+1. Create user account
+2. List user accounts
+3. Log out
+Choose: Sam Taylor (Administrator) has logged out.
+
+=== EduTech LMS ===
+1. Log in
+2. Back / exit
+Choose: Username: Password: Welcome, Lena Park (Instructor).
+
+INSTRUCTOR | 1 Create | 2 Publish | 3 My courses | 0 Log out
+Choice: Title: Description: Capacity: Draft created: C3
+
+INSTRUCTOR | 1 Create | 2 Publish | 3 My courses | 0 Log out
+Choice: Course ID: Course published successfully.
+
+INSTRUCTOR | 1 Create | 2 Publish | 3 My courses | 0 Log out
+Choice: ID | Title | Status | Capacity
+C3 | Agile Basics | PUBLISHED | 2
+
+INSTRUCTOR | 1 Create | 2 Publish | 3 My courses | 0 Log out
+Choice: Lena Park (Instructor) has logged out.
+
+=== EduTech LMS ===
+1. Log in
+2. Back / exit
+Choose: Username: Password: Welcome, Omar Ali (Learner).
+
+LEARNER | 1 Published courses | 2 Enrol | 3 My courses | 0 Log out
+Choice: ID | Title | Status | Capacity
+C1 | Introduction to Java | PUBLISHED | 1
+C3 | Agile Basics | PUBLISHED | 2
+
+LEARNER | 1 Published courses | 2 Enrol | 3 My courses | 0 Log out
+Choice: Course ID: Enrolled successfully.
+
+LEARNER | 1 Published courses | 2 Enrol | 3 My courses | 0 Log out
+Choice: ID | Title | Status | Capacity
+C3 | Agile Basics | PUBLISHED | 2
+
+LEARNER | 1 Published courses | 2 Enrol | 3 My courses | 0 Log out
+Choice: Omar Ali (Learner) has logged out.
+
+=== EduTech LMS ===
+1. Log in
+2. Back / exit
+Choose: Username: Password: Welcome, Maya Singh (Learner).
+
+LEARNER | 1 Published courses | 2 Enrol | 3 My courses | 0 Log out
+Choice: Course ID: Enrolled successfully.
+
+LEARNER | 1 Published courses | 2 Enrol | 3 My courses | 0 Log out
+Choice: Maya Singh (Learner) has logged out.
+
+=== EduTech LMS ===
+1. Log in
+2. Back / exit
+Choose: Username: Password: Welcome, Alex Chen (Learner).
+
+LEARNER | 1 Published courses | 2 Enrol | 3 My courses | 0 Log out
+Choice: Course ID: Unable to complete action: This course is full.
+
+LEARNER | 1 Published courses | 2 Enrol | 3 My courses | 0 Log out
+Choice: Alex Chen (Learner) has logged out.
+
+=== EduTech LMS ===
+1. Log in
+2. Back / exit
+Choose: Goodbye from EduTech LMS.
+---- end output (exit code 0) ----
+
+ACCEPTANCE CRITERIA (each criterion is met only if all its checks pass)
+AC-1 (FR-13) administrator creates instructor and learner accounts and sees them listed
+PASS CHECK | output shows "Created Lena Park (Instructor) successfully."
+PASS CHECK | output shows "Created Omar Ali (Learner) successfully." (after the previous line)
+PASS CHECK | output shows " - U050 | Lena Park (Instructor)" (after the previous line)
+PASS CHECK | output shows " - U051 | Omar Ali (Learner)" (after the previous line)
+AC-2 (FR-01) each new user logs in and gets the menu for their role
+PASS CHECK | output shows "Welcome, Lena Park (Instructor)."
+PASS CHECK | output shows "INSTRUCTOR |" (after the previous line)
+PASS CHECK | output shows "Welcome, Omar Ali (Learner)." (after the previous line)
+PASS CHECK | output shows "LEARNER |" (after the previous line)
+AC-3 (FR-02) instructor creates a draft, publishes it and sees it as PUBLISHED
+PASS CHECK | output shows "Draft created: C3"
+PASS CHECK | output shows "Course published successfully." (after the previous line)
+PASS CHECK | output shows "C3 | Agile Basics | PUBLISHED | 2" (after the previous line)
+AC-4 (FR-04) learner sees the course, enrols, and sees it in My courses
+PASS CHECK | Omar's session lists C3 twice (published list, then My courses) with enrolment between
+AC-5 (FR-04) the second learner takes the last seat; the third is told the course is full
+PASS CHECK | output shows "Welcome, Maya Singh (Learner)."
+PASS CHECK | output shows "Enrolled successfully." (after the previous line)
+PASS CHECK | output shows "Welcome, Alex Chen (Learner)." (after the previous line)
+PASS CHECK | output shows "Unable to complete action: This course is full." (after the previous line)
+AC-6 (NFR-01) no screen after the start-up banner shows a password
+PASS CHECK | no password appears after the start-up banner
+PASS CHECK | program ends normally with goodbye, exit code 0 and no stack trace
+RESULT: PASS | checks=18

@@ -1,0 +1,47 @@
+CASE_ID: AUTH-06
+SUT: java -cp <integrated build> edutech.Main, started fresh for each run
+Input is piped, so typed text is not echoed; the input list is shown first.
+CASE OWNER: Kaium (design). Correct password after lockout. NFR-01
+
+==== RUN: lock priya, then use the correct password ====
+Input lines (in order): 1 | priya | x-1 | 1 | priya | x-2 | 1 | priya | x-3 | 1 | priya | Teach2026! | 2
+---- program output ----
+Starting EduTech LMS (preparing secure demo accounts)...
+==============================================
+ EduTech LMS: Secure Login and Course Enrolment
+==============================================
+Demo accounts (username / password):
+  Learner:       alex  / Learner2026!
+  Learner:       maya  / Learner2026!
+  Instructor:    priya / Teach2026!
+  Administrator: sam   / Admin2026!
+
+=== EduTech LMS ===
+1. Log in
+2. Back / exit
+Choose: Username: Password: Login not completed: Incorrect username or password.
+
+=== EduTech LMS ===
+1. Log in
+2. Back / exit
+Choose: Username: Password: Login not completed: Incorrect username or password.
+
+=== EduTech LMS ===
+1. Log in
+2. Back / exit
+Choose: Username: Password: Login not completed: Account locked after 3 incorrect passwords.
+
+=== EduTech LMS ===
+1. Log in
+2. Back / exit
+Choose: Username: Password: Login not completed: Account locked after 3 incorrect passwords.
+
+=== EduTech LMS ===
+1. Log in
+2. Back / exit
+Choose: Goodbye from EduTech LMS.
+---- end output (exit code 0) ----
+PASS CHECK | locked message shown twice (at lock and for the correct password)
+PASS CHECK | no instructor menu opens
+PASS CHECK | program ends normally with goodbye, exit code 0 and no stack trace
+RESULT: PASS | checks=3

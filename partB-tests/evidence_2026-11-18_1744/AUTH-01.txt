@@ -1,0 +1,58 @@
+CASE_ID: AUTH-01
+SUT: java -cp <integrated build> edutech.Main, started fresh for each run
+Input is piped, so typed text is not echoed; the input list is shown first.
+CASE OWNER: Kaium (design). Cloud re-execution of his Windows run. FR-01, NFR-01
+
+==== RUN: valid login for each role ====
+Input lines (in order): 1 | alex | Learner2026! | 0 | 1 | priya | Teach2026! | 0 | 1 | sam | Admin2026! | 3 | 2
+---- program output ----
+Starting EduTech LMS (preparing secure demo accounts)...
+==============================================
+ EduTech LMS: Secure Login and Course Enrolment
+==============================================
+Demo accounts (username / password):
+  Learner:       alex  / Learner2026!
+  Learner:       maya  / Learner2026!
+  Instructor:    priya / Teach2026!
+  Administrator: sam   / Admin2026!
+
+=== EduTech LMS ===
+1. Log in
+2. Back / exit
+Choose: Username: Password: Welcome, Alex Chen (Learner).
+
+LEARNER | 1 Published courses | 2 Enrol | 3 My courses | 0 Log out
+Choice: Alex Chen (Learner) has logged out.
+
+=== EduTech LMS ===
+1. Log in
+2. Back / exit
+Choose: Username: Password: Welcome, Dr Priya Nair (Instructor).
+
+INSTRUCTOR | 1 Create | 2 Publish | 3 My courses | 0 Log out
+Choice: Dr Priya Nair (Instructor) has logged out.
+
+=== EduTech LMS ===
+1. Log in
+2. Back / exit
+Choose: Username: Password: Welcome, Sam Taylor (Administrator).
+
+=== Administrator Menu ===
+1. Create user account
+2. List user accounts
+3. Log out
+Choose: Sam Taylor (Administrator) has logged out.
+
+=== EduTech LMS ===
+1. Log in
+2. Back / exit
+Choose: Goodbye from EduTech LMS.
+---- end output (exit code 0) ----
+PASS CHECK | output shows "Welcome, Alex Chen (Learner)."
+PASS CHECK | output shows "LEARNER |" (after the previous line)
+PASS CHECK | output shows "Welcome, Dr Priya Nair (Instructor)." (after the previous line)
+PASS CHECK | output shows "INSTRUCTOR |" (after the previous line)
+PASS CHECK | output shows "Welcome, Sam Taylor (Administrator)." (after the previous line)
+PASS CHECK | output shows "=== Administrator Menu ===" (after the previous line)
+PASS CHECK | program ends normally with goodbye, exit code 0 and no stack trace
+RESULT: PASS | checks=7

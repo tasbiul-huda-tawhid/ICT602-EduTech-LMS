@@ -1,0 +1,66 @@
+CASE_ID: AUTH-05
+SUT: java -cp <integrated build> edutech.Main, started fresh for each run
+Input is piped, so typed text is not echoed; the input list is shown first.
+CASE OWNER: Kaium (design). Successful login resets the counter. NFR-01
+
+==== RUN: 2 failures, success, logout, then 3 new failures ====
+Input lines (in order): 1 | maya | bad-1 | 1 | maya | bad-2 | 1 | maya | Learner2026! | 0 | 1 | maya | bad-3 | 1 | maya | bad-4 | 1 | maya | bad-5 | 2
+---- program output ----
+Starting EduTech LMS (preparing secure demo accounts)...
+==============================================
+ EduTech LMS: Secure Login and Course Enrolment
+==============================================
+Demo accounts (username / password):
+  Learner:       alex  / Learner2026!
+  Learner:       maya  / Learner2026!
+  Instructor:    priya / Teach2026!
+  Administrator: sam   / Admin2026!
+
+=== EduTech LMS ===
+1. Log in
+2. Back / exit
+Choose: Username: Password: Login not completed: Incorrect username or password.
+
+=== EduTech LMS ===
+1. Log in
+2. Back / exit
+Choose: Username: Password: Login not completed: Incorrect username or password.
+
+=== EduTech LMS ===
+1. Log in
+2. Back / exit
+Choose: Username: Password: Welcome, Maya Singh (Learner).
+
+LEARNER | 1 Published courses | 2 Enrol | 3 My courses | 0 Log out
+Choice: Maya Singh (Learner) has logged out.
+
+=== EduTech LMS ===
+1. Log in
+2. Back / exit
+Choose: Username: Password: Login not completed: Incorrect username or password.
+
+=== EduTech LMS ===
+1. Log in
+2. Back / exit
+Choose: Username: Password: Login not completed: Incorrect username or password.
+
+=== EduTech LMS ===
+1. Log in
+2. Back / exit
+Choose: Username: Password: Login not completed: Account locked after 3 incorrect passwords.
+
+=== EduTech LMS ===
+1. Log in
+2. Back / exit
+Choose: Goodbye from EduTech LMS.
+---- end output (exit code 0) ----
+PASS CHECK | output shows "Incorrect username or password."
+PASS CHECK | output shows "Incorrect username or password." (after the previous line)
+PASS CHECK | output shows "Welcome, Maya Singh (Learner)." (after the previous line)
+PASS CHECK | output shows "Maya Singh (Learner) has logged out." (after the previous line)
+PASS CHECK | output shows "Incorrect username or password." (after the previous line)
+PASS CHECK | output shows "Incorrect username or password." (after the previous line)
+PASS CHECK | output shows "Account locked after 3 incorrect passwords." (after the previous line)
+PASS CHECK | the lock happens on the 3rd failure after the reset, not the 4th failure overall
+PASS CHECK | program ends normally with goodbye, exit code 0 and no stack trace
+RESULT: PASS | checks=9

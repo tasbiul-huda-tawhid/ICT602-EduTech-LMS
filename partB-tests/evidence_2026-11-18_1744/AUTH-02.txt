@@ -1,0 +1,37 @@
+CASE_ID: AUTH-02
+SUT: java -cp <integrated build> edutech.Main, started fresh for each run
+Input is piped, so typed text is not echoed; the input list is shown first.
+CASE OWNER: Kaium (design). Invalid equivalence classes. FR-01, NFR-01
+
+==== RUN: known user with wrong password, then unknown user ====
+Input lines (in order): 1 | alex | WrongPass1 | 1 | nobody | Learner2026! | 2
+---- program output ----
+Starting EduTech LMS (preparing secure demo accounts)...
+==============================================
+ EduTech LMS: Secure Login and Course Enrolment
+==============================================
+Demo accounts (username / password):
+  Learner:       alex  / Learner2026!
+  Learner:       maya  / Learner2026!
+  Instructor:    priya / Teach2026!
+  Administrator: sam   / Admin2026!
+
+=== EduTech LMS ===
+1. Log in
+2. Back / exit
+Choose: Username: Password: Login not completed: Incorrect username or password.
+
+=== EduTech LMS ===
+1. Log in
+2. Back / exit
+Choose: Username: Password: Login not completed: Incorrect username or password.
+
+=== EduTech LMS ===
+1. Log in
+2. Back / exit
+Choose: Goodbye from EduTech LMS.
+---- end output (exit code 0) ----
+PASS CHECK | both attempts give the same generic message (2 times)
+PASS CHECK | no role menu opens
+PASS CHECK | program ends normally with goodbye, exit code 0 and no stack trace
+RESULT: PASS | checks=3

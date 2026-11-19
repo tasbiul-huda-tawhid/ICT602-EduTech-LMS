@@ -1,0 +1,20 @@
+CASE_ID: WB-01
+SUT: integrated EduTech LMS build (see RUN_HEADER.txt for commit and JDK)
+TECHNIQUE: basis path testing, V(G) = P + 1 = 6 + 1 = 7; E - N + 2 = 19 - 14 + 2 = 7
+PASS CHECK | P1 input guard true (blank username) -> required | actual=IllegalArgumentException: Username and password are required.
+PASS CHECK | P2 username not found -> generic error | actual=IllegalArgumentException: Incorrect username or password.
+PASS CHECK | P4 wrong password, not yet locked -> generic error | actual=IllegalArgumentException: Incorrect username or password.
+PASS CHECK | P6 correct password after 1 failure -> returns U1 and resets the counter
+PASS CHECK | P4 failure 1 after reset | actual=IllegalArgumentException: Incorrect username or password.
+PASS CHECK | P4 failure 2 after reset: still not locked, which proves the reset (without it this would be failure 3) | actual=IllegalArgumentException: Incorrect username or password.
+PASS CHECK | P5 failure 3 locks the account -> locked message | actual=IllegalStateException: Account locked after 3 incorrect passwords.
+PASS CHECK | P3 already locked, correct password -> locked message | actual=IllegalStateException: Account locked after 3 incorrect passwords.
+PASS CHECK | P6 correct credentials on a fresh account -> returns U2
+PASS CHECK | P7 credential found but user record missing (test double) -> state error | actual=IllegalStateException: Registered user record is missing.
+Condition coverage of the input guard (4 conditions, each made true once):
+PASS CHECK |   C1 username == null | actual=IllegalArgumentException: Username and password are required.
+PASS CHECK |   C2 username blank | actual=IllegalArgumentException: Username and password are required.
+PASS CHECK |   C3 password == null | actual=IllegalArgumentException: Username and password are required.
+PASS CHECK |   C4 password empty | actual=IllegalArgumentException: Username and password are required.
+  All four false: covered by P2 to P7 above.
+RESULT: PASS | checks=14

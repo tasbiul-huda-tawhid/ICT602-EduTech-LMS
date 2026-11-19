@@ -1,0 +1,18 @@
+CASE_ID: PERF-01
+SUT: integrated EduTech LMS build (see RUN_HEADER.txt for commit and JDK)
+TECHNIQUE: single-user timing baseline in the cloud test environment.
+Targets were set before measuring. This is not a load test of NFR-03/NFR-05.
+Java runtime: 21.0.12.1 | CPUs: 2
+Registration (one PBKDF2 hash): 471 ms
+Login times over 10 runs (ms): [191, 199, 165, 158, 166, 166, 161, 159, 172, 169]
+Login median: 166 ms | max: 199 ms
+PASS CHECK | Login median under 3000 ms (indicative target taken from the NFR-03 3 s threshold)
+PASS CHECK | Login is deliberately not instant: median at least 50 ms (600,000 PBKDF2 iterations)
+1,000 enrolments into one course: 53 ms
+PASS CHECK | 1,000 enrolments complete in under 3000 ms
+PASS CHECK | Seat count equals capacity 1000
+PASS CHECK | 1,001st learner rejected at capacity 1000 | actual=IllegalStateException: This course is full.
+listPublished() over 1,000 courses: 0 ms, returned 500
+PASS CHECK | listPublished() returns the 500 published courses in under 1000 ms
+PASS CHECK | Draft courses are excluded at volume
+RESULT: PASS | checks=7

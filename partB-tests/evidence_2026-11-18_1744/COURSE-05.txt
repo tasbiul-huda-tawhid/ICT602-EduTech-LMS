@@ -1,0 +1,8 @@
+CASE_ID: COURSE-05
+SUT: source tree supplied on the command line (see RUN_HEADER.txt for path, commit and JDK)
+LEVEL: service-level unless CLI transcript explicitly included
+PASS EXCEPTION | non-owner publishing | actual=IllegalStateException: Only the course owner can publish this course.
+PASS ASSERTION | non-owner failure retains DRAFT state
+PASS EXCEPTION | second publish | actual=IllegalStateException: Course already published.
+PASS ASSERTION | course remains PUBLISHED
+RESULT: PASS | assertions=4

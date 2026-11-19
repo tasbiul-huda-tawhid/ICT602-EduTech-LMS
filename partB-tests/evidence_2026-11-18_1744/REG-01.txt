@@ -1,0 +1,11 @@
+CASE_ID: REG-01
+SUT: integrated EduTech LMS source (see RUN_HEADER.txt for commit and JDK)
+PURPOSE: replay the 80-step Part A end-to-end session on the final build and compare it,
+line by line, with the session recorded on 12 Nov 2026 (any difference = regression).
+$ /usr/lib/jvm/java-21-openjdk-amd64/bin/javac --release 17 -encoding UTF-8 -Xlint:all -d <out> -sourcepath <src> <src>/edutech/Main.java
+  javac exit code 0; compiler messages: none
+PASS CHECK | final build compiles cleanly
+  final build replay: 245 lines; differences from the Part A recording: 0
+PASS CHECK | replayed session is identical to the Part A recording (80 inputs, all screens)
+The full replayed session is saved as REG-01_session.txt beside this log.
+RESULT: PASS | checks=2

@@ -1,0 +1,8 @@
+CASE_ID: COURSE-06
+SUT: source tree supplied on the command line (see RUN_HEADER.txt for path, commit and JDK)
+LEVEL: service-level unless CLI transcript explicitly included
+PASS ASSERTION | one entry in published-only list
+PASS ASSERTION | published course present
+PASS ASSERTION | draft course excluded
+PASS ASSERTION | instructor's own list still includes both
+RESULT: PASS | assertions=4

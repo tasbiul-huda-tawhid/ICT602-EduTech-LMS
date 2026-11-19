@@ -1,0 +1,245 @@
+Starting EduTech LMS (preparing secure demo accounts)...
+==============================================
+ EduTech LMS: Secure Login and Course Enrolment
+==============================================
+Demo accounts (username / password):
+  Learner:       alex  / Learner2026!
+  Learner:       maya  / Learner2026!
+  Instructor:    priya / Teach2026!
+  Administrator: sam   / Admin2026!
+
+=== EduTech LMS ===
+1. Log in
+2. Back / exit
+Choose: 1
+Username: alex
+Password: 
+Login not completed: Incorrect username or password.
+
+=== EduTech LMS ===
+1. Log in
+2. Back / exit
+Choose: 1
+Username: ALEX
+Password: 
+Welcome, Alex Chen (Learner).
+
+LEARNER | 1 Published courses | 2 Enrol | 3 My courses | 0 Log out
+Choice: 1
+ID | Title | Status | Capacity
+C1 | Introduction to Java | PUBLISHED | 1
+
+LEARNER | 1 Published courses | 2 Enrol | 3 My courses | 0 Log out
+Choice: 2
+Course ID: C2
+Unable to complete action: This course is not published.
+
+LEARNER | 1 Published courses | 2 Enrol | 3 My courses | 0 Log out
+Choice: 2
+Course ID: C1
+Enrolled successfully.
+
+LEARNER | 1 Published courses | 2 Enrol | 3 My courses | 0 Log out
+Choice: 2
+Course ID: C1
+Unable to complete action: You are already enrolled in this course.
+
+LEARNER | 1 Published courses | 2 Enrol | 3 My courses | 0 Log out
+Choice: 2
+Course ID: C9
+Unable to complete action: Unknown course ID: C9
+
+LEARNER | 1 Published courses | 2 Enrol | 3 My courses | 0 Log out
+Choice: x
+Invalid menu option. Please choose 0, 1, 2 or 3.
+
+LEARNER | 1 Published courses | 2 Enrol | 3 My courses | 0 Log out
+Choice: 3
+ID | Title | Status | Capacity
+C1 | Introduction to Java | PUBLISHED | 1
+
+LEARNER | 1 Published courses | 2 Enrol | 3 My courses | 0 Log out
+Choice: 0
+Alex Chen (Learner) has logged out.
+
+=== EduTech LMS ===
+1. Log in
+2. Back / exit
+Choose: 1
+Username: maya
+Password: 
+Welcome, Maya Singh (Learner).
+
+LEARNER | 1 Published courses | 2 Enrol | 3 My courses | 0 Log out
+Choice: 2
+Course ID: C1
+Unable to complete action: This course is full.
+
+LEARNER | 1 Published courses | 2 Enrol | 3 My courses | 0 Log out
+Choice: 0
+Maya Singh (Learner) has logged out.
+
+=== EduTech LMS ===
+1. Log in
+2. Back / exit
+Choose: 1
+Username: priya
+Password: 
+Welcome, Dr Priya Nair (Instructor).
+
+INSTRUCTOR | 1 Create | 2 Publish | 3 My courses | 0 Log out
+Choice: 1
+Title: Data Structures
+Description: Lists, maps and trees.
+Capacity: abc
+Please enter a number from 1 to 1000000.
+Capacity: 5
+Draft created: C3
+
+INSTRUCTOR | 1 Create | 2 Publish | 3 My courses | 0 Log out
+Choice: 2
+Course ID: C3
+Course published successfully.
+
+INSTRUCTOR | 1 Create | 2 Publish | 3 My courses | 0 Log out
+Choice: 2
+Course ID: C1
+Unable to complete action: Course already published.
+
+INSTRUCTOR | 1 Create | 2 Publish | 3 My courses | 0 Log out
+Choice: 3
+ID | Title | Status | Capacity
+C1 | Introduction to Java | PUBLISHED | 1
+C2 | Software Testing Basics | DRAFT | 30
+C3 | Data Structures | PUBLISHED | 5
+
+INSTRUCTOR | 1 Create | 2 Publish | 3 My courses | 0 Log out
+Choice: 2
+Course ID: C2
+Course published successfully.
+
+INSTRUCTOR | 1 Create | 2 Publish | 3 My courses | 0 Log out
+Choice: 0
+Dr Priya Nair (Instructor) has logged out.
+
+=== EduTech LMS ===
+1. Log in
+2. Back / exit
+Choose: 1
+Username: sam
+Password: 
+Welcome, Sam Taylor (Administrator).
+
+=== Administrator Menu ===
+1. Create user account
+2. List user accounts
+3. Log out
+Choose: 2
+Registered accounts (no password information is displayed):
+ - U001 | Alex Chen (Learner)
+ - U004 | Maya Singh (Learner)
+ - U002 | Dr Priya Nair (Instructor)
+ - U003 | Sam Taylor (Administrator)
+
+=== Administrator Menu ===
+1. Create user account
+2. List user accounts
+3. Log out
+Choose: 1
+Account type: 1. Learner  2. Instructor  3. Administrator
+Choose role: 1
+User ID: U010
+Full name: Jordan Lee
+Email: jordan@example.edu
+Learner type (1. Student, 2. Corporate trainee): 2
+Login username: jordan
+Password (minimum 8 characters): 
+Account action failed: Password must have at least 8 characters.
+
+=== Administrator Menu ===
+1. Create user account
+2. List user accounts
+3. Log out
+Choose: 1
+Account type: 1. Learner  2. Instructor  3. Administrator
+Choose role: 1
+User ID: U010
+Full name: Jordan Lee
+Email: jordan@example.edu
+Learner type (1. Student, 2. Corporate trainee): 2
+Login username: jordan
+Password (minimum 8 characters): 
+Created Jordan Lee (Learner) successfully.
+
+=== Administrator Menu ===
+1. Create user account
+2. List user accounts
+3. Log out
+Choose: 2
+Registered accounts (no password information is displayed):
+ - U001 | Alex Chen (Learner)
+ - U004 | Maya Singh (Learner)
+ - U002 | Dr Priya Nair (Instructor)
+ - U003 | Sam Taylor (Administrator)
+ - U010 | Jordan Lee (Learner)
+
+=== Administrator Menu ===
+1. Create user account
+2. List user accounts
+3. Log out
+Choose: 3
+Sam Taylor (Administrator) has logged out.
+
+=== EduTech LMS ===
+1. Log in
+2. Back / exit
+Choose: 1
+Username: jordan
+Password: 
+Welcome, Jordan Lee (Learner).
+
+LEARNER | 1 Published courses | 2 Enrol | 3 My courses | 0 Log out
+Choice: 3
+No courses found.
+
+LEARNER | 1 Published courses | 2 Enrol | 3 My courses | 0 Log out
+Choice: 0
+Jordan Lee (Learner) has logged out.
+
+=== EduTech LMS ===
+1. Log in
+2. Back / exit
+Choose: 1
+Username: priya
+Password: 
+Login not completed: Incorrect username or password.
+
+=== EduTech LMS ===
+1. Log in
+2. Back / exit
+Choose: 1
+Username: priya
+Password: 
+Login not completed: Incorrect username or password.
+
+=== EduTech LMS ===
+1. Log in
+2. Back / exit
+Choose: 1
+Username: priya
+Password: 
+Login not completed: Account locked after 3 incorrect passwords.
+
+=== EduTech LMS ===
+1. Log in
+2. Back / exit
+Choose: 1
+Username: priya
+Password: 
+Login not completed: Account locked after 3 incorrect passwords.
+
+=== EduTech LMS ===
+1. Log in
+2. Back / exit
+Choose: 2
+Goodbye from EduTech LMS.

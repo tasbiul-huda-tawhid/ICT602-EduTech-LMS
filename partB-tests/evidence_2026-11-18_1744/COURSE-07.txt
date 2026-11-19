@@ -1,0 +1,31 @@
+CASE_ID: COURSE-07
+SUT: integrated EduTech LMS build (see RUN_HEADER.txt for commit and JDK)
+TECHNIQUE: boundary value analysis on the upper capacity limit, CLI and service
+CLI input: 1 / title / description / 1000001 / 2147483648 / -1 / 1000000, then 1 / title / description / 999999, then 3 / 0
+---- CLI transcript ----
+
+INSTRUCTOR | 1 Create | 2 Publish | 3 My courses | 0 Log out
+Choice: Title: Description: Capacity: Please enter a number from 1 to 1000000.
+Capacity: Please enter a number from 1 to 1000000.
+Capacity: Please enter a number from 1 to 1000000.
+Capacity: Draft created: C1
+
+INSTRUCTOR | 1 Create | 2 Publish | 3 My courses | 0 Log out
+Choice: Title: Description: Capacity: Draft created: C2
+
+INSTRUCTOR | 1 Create | 2 Publish | 3 My courses | 0 Log out
+Choice: ID | Title | Status | Capacity
+C1 | Max course | DRAFT | 1000000
+C2 | One below max | DRAFT | 999999
+
+INSTRUCTOR | 1 Create | 2 Publish | 3 My courses | 0 Log out
+Choice: 
+---- end transcript ----
+PASS CHECK | CLI re-prompts for 1000001, 2147483648 (int overflow) and -1: 3 re-prompts, observed 3
+PASS CHECK | CLI accepts 1000000 (upper boundary) and creates C1
+PASS CHECK | CLI accepts 999999 (just below upper boundary) and creates C2
+PASS CHECK | My courses lists C1 with capacity 1000000
+PASS CHECK | Program did not crash (menu shown again after the last action)
+PASS CHECK | OBSERVATION: service accepts 1000001 directly (upper limit is enforced in the view only)
+PASS CHECK | Service still rejects -1 | actual=IllegalArgumentException: Capacity must be positive.
+RESULT: PASS | checks=7

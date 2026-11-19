@@ -1,0 +1,16 @@
+CASE_ID: COURSE-03
+SUT: source tree supplied on the command line (see RUN_HEADER.txt for path, commit and JDK)
+LEVEL: service-level unless CLI transcript explicitly included
+PASS EXCEPTION | capacity zero | actual=IllegalArgumentException: Capacity must be positive.
+PASS ASSERTION | capacity one accepted at service boundary
+CLI transcript (provided input: 1, title, description, abc, 0, 1, 0):
+
+INSTRUCTOR | 1 Create | 2 Publish | 3 My courses | 0 Log out
+Choice: Title: Description: Capacity: Please enter a number from 1 to 1000000.
+Capacity: Please enter a number from 1 to 1000000.
+Capacity: Draft created: C1
+
+INSTRUCTOR | 1 Create | 2 Publish | 3 My courses | 0 Log out
+Choice: PASS ASSERTION | CLI rejects non-numeric and zero with two re-prompts
+PASS ASSERTION | CLI accepts 1 then creates draft and returns to menu
+RESULT: PASS | assertions=4

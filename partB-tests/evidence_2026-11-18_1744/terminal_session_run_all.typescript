@@ -1,0 +1,65 @@
+Script started on 2026-11-18 17:44:19+11:00 [COMMAND="cd /home/claude/partB/suite && echo '$ bash run_all_partB.sh ../repo' && bash run_all_partB.sh ../repo" <not executed on terminal>]
+$ bash run_all_partB.sh ../repo
+ICT602 A3 Part B test run, Group Sydney 3
+Run started : 2026-11-18 17:44:19 AEDT
+Executed by : Tawhid, using an AI-assisted cloud test environment (Environment 1)
+Project root: /home/claude/partB/repo
+Commit      : 80bbd44
+Source SHA-256 (all .java files, sorted): 5845ebeb93fd9104
+Java source files: 35
+OS          : Ubuntu 24.04.5 LTS | kernel 6.18.44-fc-v595 | x86_64
+CPU         : Intel(R) Xeon(R) Processor @ 2.10GHz | 2 vCPU
+Memory      : 7.8Gi RAM
+Default JDK : openjdk version "21.0.12.1" 2026-08-18 | javac 21.0.12.1
+Second JDK  : openjdk version "17.0.21.0.3" 2026-10-24
+Python      : Python 3.13.18
+Build flags : javac --release 17 -encoding UTF-8 -Xlint:all
+
+== Compile system under test and test programs ==
+Compiled: system under test + 4 Java test programs (no warnings)
+
+== Authentication (design: Kaium) ==
+AUTH-01    PASS  (7 checks)
+AUTH-02    PASS  (3 checks)
+AUTH-03    PASS  (2 checks)
+AUTH-04    PASS  (5 checks)
+AUTH-05    PASS  (9 checks)
+AUTH-06    PASS  (3 checks)
+AUTH-07    PASS  (4 checks)
+AUTH-08    PASS  (5 checks)
+AUTH-09    PASS  (8 checks)
+
+== Courses and enrolment (design: Rahul; COURSE-07, ENROL-05: Tawhid) ==
+COURSE-01  PASS  (5 checks)
+COURSE-02  PASS  (5 checks)
+COURSE-03  PASS  (4 checks)
+COURSE-04  PASS  (2 checks)
+COURSE-05  PASS  (4 checks)
+COURSE-06  PASS  (4 checks)
+COURSE-07  PASS  (7 checks)
+ENROL-01   PASS  (3 checks)
+ENROL-02   PASS  (3 checks)
+ENROL-03   PASS  (2 checks)
+ENROL-04   PASS  (4 checks)
+ENROL-05   PASS  (12 checks)
+
+== Integration, regression, white-box and non-functional (Tawhid) ==
+INT-01     PASS  (11 checks)
+INT-02     PASS  (13 checks)
+INT-03     PASS  (14 checks)
+INT-04     PASS  (11 checks)
+REG-01     PASS  (2 checks)
+REG-02     PASS  (11 checks)
+REG-03     PASS  (10 checks)
+WB-01      PASS  (14 checks)
+WB-02      PASS  (7 checks)
+PERF-01    PASS  (7 checks)
+USE-01     PASS  (9 checks)
+COMP-01    PASS  (8 checks)
+UAT-01     PASS  (18 checks)
+
+Cases run: 34 | Passed: 34 | Failed: 0 | Individual checks: 236
+Run finished: 2026-11-18 17:47:31 AEDT
+Evidence folder: evidence_2026-11-18_1744
+
+Script done on 2026-11-18 17:47:31+11:00 [COMMAND_EXIT_CODE="0"]

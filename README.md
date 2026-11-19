@@ -1,4 +1,4 @@
-# EduTech LMS — Secure Login and Course Enrolment
+# EduTech LMS: Secure Login and Course Enrolment
 
 **ICT602 Software Engineering · Assessment 3 Part A · Group Sydney 3 · Victorian Institute of Technology (2026)**
 
@@ -30,8 +30,8 @@ Use a terminal for hidden password entry. Some IDE consoles may echo typed passw
 
 | Role | Username | Password |
 |---|---|---|
-| Learner — student | `alex` | `Learner2026!` |
-| Learner — corporate trainee | `maya` | `Learner2026!` |
+| Learner (student) | `alex` | `Learner2026!` |
+| Learner (corporate trainee) | `maya` | `Learner2026!` |
 | Instructor | `priya` | `Teach2026!` |
 | Administrator | `sam` | `Admin2026!` |
 
@@ -57,7 +57,19 @@ src/edutech/model/service/          Authentication, course and enrolment rules
 src/edutech/controller/             Console workflow controllers
 src/edutech/view/                   Menus and input/output
 evidence/                            Example integrated terminal run
+partB-tests/                         Assessment 3 Part B test suite and recorded test run
 ```
+
+## Assessment 3 Part B: testing
+
+The `partB-tests/` folder contains the Part B test suite (34 test cases, standard library only) and the evidence from the recorded run of 18 November 2026: **34 of 34 cases passed, 236 checks**. The source in `src/` is unchanged since commit `80bbd44`, the version tested. To re-run every case:
+
+```sh
+cd partB-tests
+bash run_all_partB.sh ..
+```
+
+See [`partB-tests/README.md`](partB-tests/README.md) for requirements, folder contents and options.
 
 The submitted Software Design Specification contains the full conceptual UML diagrams, selected implementation excerpts and screenshots. This repository provides the executable source for independent verification.
 

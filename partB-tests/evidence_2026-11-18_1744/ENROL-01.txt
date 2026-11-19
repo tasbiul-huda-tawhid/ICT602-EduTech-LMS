@@ -1,0 +1,7 @@
+CASE_ID: ENROL-01
+SUT: source tree supplied on the command line (see RUN_HEADER.txt for path, commit and JDK)
+LEVEL: service-level unless CLI transcript explicitly included
+PASS ASSERTION | enrolment references correct learner and course
+PASS ASSERTION | record saved in repository
+PASS ASSERTION | occupied seats increase to one
+RESULT: PASS | assertions=3

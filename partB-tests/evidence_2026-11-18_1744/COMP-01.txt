@@ -1,0 +1,40 @@
+CASE_ID: COMP-01
+SUT: integrated EduTech LMS source (see RUN_HEADER.txt for commit and JDK)
+PURPOSE: the module behaves the same on Java 17 and Java 21, from classes and from a JAR,
+and passwords stay hidden in a real terminal on both. Windows Command Prompt behaviour is
+covered by Kaium's screenshots (Environment 2), not re-run here.
+JDK 17: openjdk version "17.0.21.0.3" 2026-10-24 | javac 17.0.21.0.3
+JDK 21: openjdk version "21.0.12.1" 2026-08-18 | javac 21.0.12.1
+
+(a) compile with each JDK, targeting Java 17
+$ /usr/lib/jvm/java-17-openjdk-amd64/bin/javac --release 17 -encoding UTF-8 -Xlint:all -d <out> -sourcepath <src> <src>/edutech/Main.java
+  javac exit code 0; compiler messages: none
+PASS CHECK | JDK 17 javac --release 17 -Xlint:all: exit 0, no warnings
+$ /usr/lib/jvm/java-21-openjdk-amd64/bin/javac --release 17 -encoding UTF-8 -Xlint:all -d <out> -sourcepath <src> <src>/edutech/Main.java
+  javac exit code 0; compiler messages: none
+PASS CHECK | JDK 21 javac --release 17 -Xlint:all: exit 0, no warnings
+
+(b) same 80-step terminal session on each runtime
+  Java 17 runtime: 245 lines; differences from the Part A recording: 0
+  Java 21 runtime: 245 lines; differences from the Part A recording: 0
+PASS CHECK | Java 17 runtime session matches the reference session exactly
+PASS CHECK | Java 21 runtime session matches the reference session exactly
+
+(c) password masking in a real terminal
+  Java 17: 12 password prompts; typed text shown after any of them: no
+  Java 21: 12 password prompts; typed text shown after any of them: no
+PASS CHECK | Java 17: every password prompt hides the typed text (12 prompts)
+PASS CHECK | Java 21: every password prompt hides the typed text (12 prompts)
+
+(d) packaged JAR on each runtime
+$ jar --create --file edutech-lms.jar --main-class edutech.Main -C <out> .
+  Java 17: java -jar edutech-lms.jar < '2' -> exit 0, last line: Choose: Goodbye from EduTech LMS.
+PASS CHECK | Java 17 runs the JAR: banner shown, clean exit
+  Java 21: java -jar edutech-lms.jar < '2' -> exit 0, last line: Choose: Goodbye from EduTech LMS.
+PASS CHECK | Java 21 runs the JAR: banner shown, clean exit
+
+(e) piped input (no terminal): documented, not a pass/fail item
+  With piped input System.console() is unavailable, so InputHelper.readPassword falls back to
+  readNonEmptyText. Nothing is echoed by a pipe, but an IDE console would show the password.
+  Recorded as risk R-03 / Kaium's SEC-OBS-02.
+RESULT: PASS | checks=8

@@ -1,0 +1,14 @@
+ICT602 A3 Part B test run, Group Sydney 3
+Run started : 2026-11-18 17:44:19 AEDT
+Executed by : Tawhid, using an AI-assisted cloud test environment (Environment 1)
+Project root: /home/claude/partB/repo
+Commit      : 80bbd44
+Source SHA-256 (all .java files, sorted): 5845ebeb93fd9104
+Java source files: 35
+OS          : Ubuntu 24.04.5 LTS | kernel 6.18.44-fc-v595 | x86_64
+CPU         : Intel(R) Xeon(R) Processor @ 2.10GHz | 2 vCPU
+Memory      : 7.8Gi RAM
+Default JDK : openjdk version "21.0.12.1" 2026-08-18 | javac 21.0.12.1
+Second JDK  : openjdk version "17.0.21.0.3" 2026-10-24
+Python      : Python 3.13.18
+Build flags : javac --release 17 -encoding UTF-8 -Xlint:all
