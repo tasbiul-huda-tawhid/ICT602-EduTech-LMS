@@ -1,5 +1,9 @@
 # EduTech LMS: Secure Login and Course Enrolment
 
+A Java console prototype for course publishing and learner enrolment, built as a team project. It demonstrates role-based login and enrolment validation. Data is stored in memory and resets when the program exits.
+
+**My contribution (Tasbiul Huda Tawhid):** I helped integrate the MVC components and designed 15 of the team’s 34 test cases. Our recorded run passed all 34 cases across 236 checks. See [the test suite and evidence](partB-tests/README.md).
+
 **ICT602 Software Engineering · Assessment 3 Part A · Group Sydney 3 · Victorian Institute of Technology (2026)**
 
 This repository contains a **runnable Java console prototype** of the EduTech Learning Management System (LMS). The module uses the Model–View–Controller (MVC) pattern. It demonstrates authentication, role-based menus, course creation and publishing, and learner enrolment. The wider LMS described in our Software Design Specification is **conceptual**, not fully implemented here.
